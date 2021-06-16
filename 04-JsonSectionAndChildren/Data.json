@@ -1,0 +1,22 @@
+{
+    "Company":
+    {
+        "Name": "Nokia",
+        "Country": "China"
+    },
+    "Phones":
+    {
+        "Samsung Galaxy J5":
+        {
+            "Price": 3000
+        },
+        "LG Nexus 5":
+        {
+            "Price": 4000
+        },
+        "OnePlus 9":
+        {
+            "Price": 12000
+        }
+    }
+}
