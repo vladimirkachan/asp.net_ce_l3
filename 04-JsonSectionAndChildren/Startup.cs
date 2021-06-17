@@ -32,7 +32,8 @@ namespace _04_JsonSectionAndChildren
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            IConfigurationSection section = Configuration.GetSection("Company");
+            IConfigurationSection section1 = Configuration.GetSection("Company"),
+                                  section2 = Configuration.GetSection("Phones");
 
             if (env.IsDevelopment())
             {
@@ -45,9 +46,10 @@ namespace _04_JsonSectionAndChildren
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync($"<h2>Company: {section.GetSection("Name").Value}</h2>");
-                    await context.Response.WriteAsync($"<h2>Country: {section.GetSection("Country").Value}</h2>");
-                    
+                    await context.Response.WriteAsync($"<h2>Company: {section1.GetSection("Name").Value}</h2>");
+                    await context.Response.WriteAsync($"<h2>Country: {section1.GetSection("Country").Value}</h2><hr />");
+                    foreach (var phone in section2.GetChildren())
+                        await context.Response.WriteAsync($"<p>{phone.Key} = ${phone.GetSection("Price").Value}</p>");
                 });
             });
         }
